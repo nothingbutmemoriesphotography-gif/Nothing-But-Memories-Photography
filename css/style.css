@@ -288,6 +288,7 @@ h1,h2,h3{ font-family: var(--font-display); font-weight: 500; margin:0; }
 }
 .gallery-item:hover .caption{ opacity:1; transform: translateY(0); }
 .gallery-item.hidden{
+  display: none;
   opacity: 0;
   pointer-events: none;
   transform: scale(0.98);

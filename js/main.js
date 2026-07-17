@@ -170,6 +170,14 @@
   }
 
   function layoutMasonry(){
+    masonryState.items.forEach(item => {
+      if (item.classList.contains('hidden')){
+        item.style.display = 'none';
+        return;
+      }
+      item.style.display = 'block';
+    });
+
     const visibleItems = masonryState.items.filter(item => !item.classList.contains('hidden'));
     const columns = Array.from({ length: masonryState.cols }, () => 0);
     const colWidth = (galleryGrid.clientWidth - (masonryState.cols - 1) * masonryState.gap) / masonryState.cols;
