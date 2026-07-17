@@ -67,7 +67,9 @@ const SITE_CONTENT = {
       { src: "images/hero/hero-1.jpg", alt: "Wedding couple portrait" },
       { src: "images/hero/hero-2.jpg", alt: "Candid wedding moment" },
       { src: "images/hero/hero-3.jpg", alt: "Bride and groom close up" },
-      { src: "images/hero/hero-4.jpg", alt: "Bride and groom close up" }
+      { src: "images/hero/hero-4.jpg", alt: "Bride and groom close up" },
+      { src: "images/hero/hero-5.jpg", alt: "Bride and groom close up" }
+
     ]
   },
 
