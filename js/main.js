@@ -112,6 +112,17 @@
   const filtersWrap = document.getElementById('galleryFilters');
   const categories = ['All', ...new Set(C.gallery.map(g => g.category))];
 
+  function shuffleArray(array){
+    const clone = array.slice();
+    for (let i = clone.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+    return clone;
+  }
+
+  const displayGallery = shuffleArray(C.gallery);
+
   const masonryState = {
     cols: 4,
     gap: 18,
@@ -133,7 +144,7 @@
     filtersWrap.appendChild(btn);
   });
 
-  C.gallery.forEach((g, index) => {
+  displayGallery.forEach((g, index) => {
     const item = el('div', 'gallery-item');
     item.dataset.category = g.category;
     item.dataset.caption = g.caption || '';
