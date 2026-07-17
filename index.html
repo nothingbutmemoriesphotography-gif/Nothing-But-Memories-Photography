@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nothing But Memories Photography</title>
+<meta name="description" content="Nothing But Memories Photography — wedding, pre-wedding and lifestyle photography. Create. Capture. Cherish.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/svg+xml" href="images/logo/logo-mark.svg">
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="logo">
+    <img src="images/logo/logo-mark.svg" alt="Nothing But Memories Photography" class="logo-mark" id="logoMark">
+    <span class="logo-text">Nothing But Memories</span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="site-nav" id="siteNav">
+    <a href="#gallery">Gallery</a>
+    <a href="#films">Films</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Kind Words</a>
+    <a href="#enquire" class="nav-cta">Enquire</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Wedding &amp; Lifestyle Photography</p>
+    <h1 class="hero-title" id="heroTitle">Create. Capture. Cherish.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub" id="heroSub">Turning your biggest days into the memories you'll return to for the rest of your life.</p>
+    <a href="#enquire" class="btn btn-outline">Start Your Story</a>
+  </div>
+  <a href="#pillars" class="scroll-cue" aria-label="Scroll down">
+    <span></span>
+  </a>
+</section>
+
+<!-- ============ PILLARS: CREATE / CAPTURE / CHERISH ============ -->
+<section class="pillars" id="pillars">
+  <div class="pillars-inner" id="pillarsInner"></div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="section-head">
+    <p class="section-eyebrow">The Portfolio</p>
+    <h2 class="section-title">Moments We've Framed</h2>
+  </div>
+  <div class="gallery-filters" id="galleryFilters"></div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ============ FILMS ============ -->
+<section class="films" id="films">
+  <div class="section-head">
+    <p class="section-eyebrow">Motion</p>
+    <h2 class="section-title">Films We've Made</h2>
+  </div>
+  <div class="films-grid" id="filmsGrid"></div>
+</section>
+
+<!-- video lightbox -->
+<div class="video-lightbox" id="videoLightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close video">&times;</button>
+  <div class="lightbox-frame" id="lightboxFrame"></div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about-photo ph-image" data-label="about-photo.jpg"></div>
+  <div class="about-copy">
+    <p class="section-eyebrow">Behind the Camera</p>
+    <h2 class="section-title" id="aboutHeading">Our Story</h2>
+    <p class="about-text" id="aboutText"></p>
+    <p class="about-quote" id="aboutQuote"></p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonials">
+  <div class="section-head">
+    <p class="section-eyebrow">Kind Words</p>
+    <h2 class="section-title">From Couples We've Worked With</h2>
+  </div>
+  <div class="testimonial-track" id="testimonialTrack"></div>
+  <div class="testimonial-dots" id="testimonialDots"></div>
+</section>
+
+<!-- ============ ENQUIRE ============ -->
+<section class="enquire" id="enquire">
+  <p class="section-eyebrow light">Let's Talk</p>
+  <h2 class="enquire-title">Let's Create Something Timeless</h2>
+  <p class="enquire-sub">Tell us your date, venue and the story you want told. We'll take it from there.</p>
+
+  <div class="enquire-buttons">
+    <a href="#" id="whatsappBtn" class="btn btn-solid btn-whatsapp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 1 1 6.99 3.86zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.98-.14.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+      <span>Chat on WhatsApp</span>
+    </a>
+    <a href="#" id="emailBtn" class="btn btn-solid btn-email">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13A2.5 2.5 0 0 1 19.5 21h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.2.3 7.34 5.87a.8.8 0 0 0 .92 0L19.8 5.8a.5.5 0 0 0-.3-.8H4.5a.5.5 0 0 0-.3.8Z"/></svg>
+      <span>Email Us</span>
+    </a>
+  </div>
+
+  <p class="enquire-hint">Share your names, wedding date, city/venue and the events you'd like covered — we'll reply within a day.</p>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <img src="images/logo/logo-mark.svg" alt="Nothing But Memories Photography" class="footer-logo-mark" id="footerLogoMark">
+  <p class="footer-brand">Nothing But Memories Photography</p>
+  <p class="footer-tag">Create. Capture. Cherish.</p>
+  <div class="footer-links">
+    <a href="#" id="footerInstagram" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" id="footerEmailLink">Email</a>
+    <a href="#" id="footerWhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <p class="footer-copy">&copy; <span id="footerYear"></span> Nothing But Memories Photography. All rights reserved.</p>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

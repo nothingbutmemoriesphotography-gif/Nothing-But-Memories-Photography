@@ -1,0 +1,10 @@
+Upload your client photos here with these names:
+- client1.jpg (or .png)
+- client2.jpg (or .png)
+- client3.jpg (or .png)
+- etc.
+
+These will appear as profile images in the testimonials section.
+The number must match the order in content.js under testimonials.
+
+Recommended size: Square images (500x500px or larger) work best.
