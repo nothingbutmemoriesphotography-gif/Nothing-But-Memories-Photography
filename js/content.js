@@ -119,8 +119,8 @@ const SITE_CONTENT = {
   // file inside the /videos folder and use "videoFile" instead of
   // "youtubeId" (see the commented example below).
   films: [
-    { title: "Rakshu & Vishal — Haldi Film", videoFile: "videos/Haldi.mov", thumbnail: "images/gallery/wedding-07.jpg"},
-    { title: "Rakshu & Vishal — Teaser", videoFile: "videos/S-V WED 01.mov", thumbnail: "images/hero/hero-2.jpg"}
+    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "RLH7f8JqNOY", thumbnail: "images/gallery/wedding-07.jpg"},
+    { title: "Rakshu & Vishal — Teaser", youtubeId: "RLH7f8JqNOY", thumbnail: "images/hero/hero-2.jpg"}
 
     // Example using your own video file instead of YouTube:
     // { title: "Simran & Rohan — Highlights", videoFile: "videos/simran-rohan.mp4", thumbnail: "images/gallery/wedding-04.jpg" }
