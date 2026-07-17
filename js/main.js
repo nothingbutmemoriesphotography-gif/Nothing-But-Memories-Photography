@@ -112,39 +112,119 @@
   const filtersWrap = document.getElementById('galleryFilters');
   const categories = ['All', ...new Set(C.gallery.map(g => g.category))];
 
+  const masonryState = {
+    cols: 4,
+    gap: 18,
+    items: [],
+    resizeTimeout: null,
+  };
+
   categories.forEach((cat, i) => {
     const btn = el('button', 'filter-btn' + (i === 0 ? ' active' : ''), cat);
     btn.addEventListener('click', () => {
       filtersWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.querySelectorAll('.gallery-item').forEach(item => {
+      masonryState.items.forEach(item => {
         const show = cat === 'All' || item.dataset.category === cat;
         item.classList.toggle('hidden', !show);
       });
+      requestAnimationFrame(refreshMasonry);
     });
     filtersWrap.appendChild(btn);
   });
 
-  C.gallery.forEach(g => {
+  C.gallery.forEach((g, index) => {
     const item = el('div', 'gallery-item');
     item.dataset.category = g.category;
     item.dataset.caption = g.caption || '';
+    item.dataset.index = index;
+    item.style.opacity = '0';
     item.appendChild(makeImage(g.src, g.caption));
     item.appendChild(el('div', 'caption', g.caption || ''));
-    // clicking a gallery tile opens a lightbox showing either:
-    // - all images with the same caption (default), or
-    // - a numbered set inside a folder when `groupFolder` is provided in `js/content.js`
     item.addEventListener('click', () => openCoupleGallery(g));
     galleryGrid.appendChild(item);
+    masonryState.items.push(item);
   });
 
-  // "developing photograph" reveal on scroll
+  function getColumnCount(){
+    if (window.innerWidth <= 360) return 1;
+    if (window.innerWidth <= 760) return 2;
+    if (window.innerWidth <= 1080) return 3;
+    return 4;
+  }
+
+  function updateGalleryColumns(){
+    masonryState.cols = getColumnCount();
+    masonryState.gap = window.innerWidth <= 760 ? 12 : 18;
+    galleryGrid.style.setProperty('--masonry-columns', masonryState.cols);
+    galleryGrid.style.setProperty('--masonry-gap', masonryState.gap + 'px');
+  }
+
+  function waitForImages(items){
+    return Promise.all(items.map(item => {
+      const img = item.querySelector('img');
+      if (!img) return Promise.resolve();
+      if (img.complete && img.naturalHeight !== 0) return Promise.resolve();
+      return new Promise(resolve => { img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', resolve, { once: true }); });
+    }));
+  }
+
+  function layoutMasonry(){
+    const visibleItems = masonryState.items.filter(item => !item.classList.contains('hidden'));
+    const columns = Array.from({ length: masonryState.cols }, () => 0);
+    const colWidth = (galleryGrid.clientWidth - (masonryState.cols - 1) * masonryState.gap) / masonryState.cols;
+    let maxHeight = 0;
+
+    visibleItems.forEach(item => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      const width = img.naturalWidth || img.width || item.offsetWidth;
+      const height = img.naturalHeight || img.height || item.offsetHeight;
+      const itemHeight = width > 0 ? (height * colWidth / width) : item.offsetHeight;
+      const smallestCol = columns.indexOf(Math.min(...columns));
+      const x = smallestCol * (colWidth + masonryState.gap);
+      const y = columns[smallestCol];
+      item.style.width = colWidth + 'px';
+      item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      item.style.opacity = '1';
+      columns[smallestCol] += itemHeight + masonryState.gap;
+      maxHeight = Math.max(maxHeight, columns[smallestCol]);
+    });
+
+    galleryGrid.style.height = maxHeight > 0 ? maxHeight + 'px' : '0px';
+  }
+
+  async function refreshMasonry(){
+    updateGalleryColumns();
+    const itemsToLayout = masonryState.items.filter(item => !item.classList.contains('hidden'));
+    await waitForImages(itemsToLayout);
+    layoutMasonry();
+  }
+
+  function scheduleLayout(){
+    clearTimeout(masonryState.resizeTimeout);
+    masonryState.resizeTimeout = setTimeout(refreshMasonry, 80);
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('developed');
     });
   }, { threshold: 0.25 });
-  document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+  masonryState.items.forEach(item => observer.observe(item));
+
+  window.addEventListener('resize', scheduleLayout);
+  window.addEventListener('load', refreshMasonry);
+  setTimeout(refreshMasonry, 300);
+
+  // Recalculate layout when any gallery image finishes loading
+  masonryState.items.forEach(item => {
+    const img = item.querySelector('img');
+    if (img){
+      img.addEventListener('load', () => requestAnimationFrame(refreshMasonry));
+      img.addEventListener('error', () => requestAnimationFrame(refreshMasonry));
+    }
+  });
 
   // ---------------- COUPLE GALLERY LIGHTBOX ----------------
   function openCoupleGallery(galItem){
