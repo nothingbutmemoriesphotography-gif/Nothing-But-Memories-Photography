@@ -22,7 +22,7 @@
       wrap.innerHTML = '';
       const ph = el('div', 'ph-image');
       ph.setAttribute('data-label', src.split('/').pop());
-      wrap.appendChild(ph); 
+      wrap.appendChild(ph);
     };
     img.src = src;
     wrap.appendChild(img);

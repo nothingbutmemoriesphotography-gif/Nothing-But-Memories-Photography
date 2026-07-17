@@ -6,6 +6,4 @@ node_modules/
 videos/
 *.mov
 *.mp4
-.firebase/
-firebase-debug.log
 
