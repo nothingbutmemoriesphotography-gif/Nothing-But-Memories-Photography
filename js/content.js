@@ -93,27 +93,27 @@ const SITE_CONTENT = {
   // the closing bracket ], change the file name, category and caption.
   // TO REMOVE A PHOTO: delete its whole { ... } block.
   gallery: [
-    { src: "images/gallery/wedding-01.jpg", category: "Wedding", caption: "Riya & Arjun, Udaipur", groupFolder: "images/gallery/riya-arjun-udaipur", groupCount: 8 },
-    { src: "images/gallery/wedding-02.jpg", category: "Wedding", caption: "Riya & Arjun, Udaipur" },
-    { src: "images/gallery/wedding-03.jpg", category: "Wedding", caption: "Meher & Kabir, Goa", groupFolder: "images/gallery/meher-kabir-goa", groupCount: 7 },
-    { src: "images/gallery/wedding-04.jpg", category: "Pre-Wedding", caption: "Ananya & Vivaan", groupFolder: "images/gallery/ananya-vivaan", groupCount: 7 },
-    { src: "images/gallery/wedding-05.jpg", category: "Pre-Wedding", caption: "Ananya & Vivaan" },
-    { src: "images/gallery/wedding-06.jpg", category: "Portrait", caption: "Family Portrait, Delhi", groupFolder: "images/gallery/family-portrait-delhi", groupCount: 5 },
-    { src: "images/gallery/wedding-07.jpg", category: "Candid", caption: "Sangeet Night, Jaipur", groupFolder: "images/gallery/sangeet-night-jaipur", groupCount: 6 },
-    { src: "images/gallery/wedding-08.jpg", category: "Candid", caption: "Reception, Bengaluru", groupFolder: "images/gallery/reception-bengaluru", groupCount: 6 },
-    { src: "images/gallery/wedding-09.jpg", category: "Wedding", caption: "Simran & Rohan, Jodhpur", groupFolder: "images/gallery/simran-rohan-jodhpur", groupCount: 7 },
-    { src: "images/gallery/wedding-10.jpg", category: "Portrait", caption: "Soundarya & Nagesh", groupFolder: "images/gallery/Soundarya & Nagesh", groupCount: 5 },
-    { src: "images/gallery/wedding-11.jpg", category: "Candid", caption: "Reception, Bengaluru", groupFolder: "images/gallery/reception-bengaluru", groupCount: 6 },
-    { src: "images/gallery/wedding-12.jpg", category: "Wedding", caption: "Simran & Rohan, Jodhpur", groupFolder: "images/gallery/simran-rohan-jodhpur", groupCount: 7 },
-    { src: "images/gallery/wedding-13.jpg", category: "Portrait", caption: "Soundarya & Nagesh", groupFolder: "images/gallery/Soundarya & Nagesh", groupCount: 5 },
-    { src: "images/gallery/wedding-14.jpg", category: "Destination", caption: "Sunset vows in Bali" },
-    { src: "images/gallery/wedding-15.jpg", category: "Candid", caption: "Laughter under the mandap" },
-    { src: "images/gallery/wedding-16.jpg", category: "Portrait", caption: "Bride's quiet moment" },
-    { src: "images/gallery/wedding-17.jpg", category: "Pre-Wedding", caption: "Wedding glow by the lake" },
-    { src: "images/gallery/wedding-18.jpg", category: "Wedding", caption: "First dance sparks" },
+    { src: "images/gallery/webp images/wedding-01.webp", category: "Wedding", caption: "Riya & Arjun, Udaipur", groupFolder: "images/gallery/riya-arjun-udaipur", groupCount: 8 },
+    { src: "images/gallery/webp images/wedding-02.webp", category: "Wedding", caption: "Riya & Arjun, Udaipur" },
+    { src: "images/gallery/webp images/wedding-03.webp", category: "Wedding", caption: "Meher & Kabir, Goa", groupFolder: "images/gallery/meher-kabir-goa", groupCount: 7 },
+    { src: "images/gallery/webp images/wedding-04.webp", category: "Pre-Wedding", caption: "Ananya & Vivaan", groupFolder: "images/gallery/ananya-vivaan", groupCount: 7 },
+    { src: "images/gallery/webp images/wedding-05.webp", category: "Pre-Wedding", caption: "Ananya & Vivaan" },
+    { src: "images/gallery/webp images/wedding-06.webp", category: "Portrait", caption: "Family Portrait, Delhi", groupFolder: "images/gallery/family-portrait-delhi", groupCount: 5 },
+    { src: "images/gallery/webp images/wedding-07.webp", category: "Candid", caption: "Sangeet Night, Jaipur", groupFolder: "images/gallery/sangeet-night-jaipur", groupCount: 6 },
+    { src: "images/gallery/webp images/wedding-08.webp", category: "Candid", caption: "Reception, Bengaluru", groupFolder: "images/gallery/reception-bengaluru", groupCount: 6 },
+    { src: "images/gallery/webp images/wedding-09.webp", category: "Wedding", caption: "Simran & Rohan, Jodhpur", groupFolder: "images/gallery/simran-rohan-jodhpur", groupCount: 7 },
+    { src: "images/gallery/webp images/wedding-10.webp", category: "Portrait", caption: "Soundarya & Nagesh", groupFolder: "images/gallery/Soundarya & Nagesh", groupCount: 5 },
+    { src: "images/gallery/webp images/wedding-11.webp", category: "Candid", caption: "Reception, Bengaluru", groupFolder: "images/gallery/reception-bengaluru", groupCount: 6 },
+    { src: "images/gallery/webp images/wedding-12.webp", category: "Wedding", caption: "Simran & Rohan, Jodhpur", groupFolder: "images/gallery/simran-rohan-jodhpur", groupCount: 7 },
+    { src: "images/gallery/webp images/wedding-13.webp", category: "Portrait", caption: "Soundarya & Nagesh", groupFolder: "images/gallery/Soundarya & Nagesh", groupCount: 5 },
+    { src: "images/gallery/webp images/wedding-14.webp", category: "Destination", caption: "Sunset vows in Bali" },
+    { src: "images/gallery/webp images/wedding-15.webp", category: "Candid", caption: "Laughter under the mandap" },
+    { src: "images/gallery/webp images/wedding-16.webp", category: "Portrait", caption: "Bride's quiet moment" },
+    { src: "images/gallery/webp images/wedding-17.webp", category: "Pre-Wedding", caption: "Wedding glow by the lake" },
+    { src: "images/gallery/webp images/wedding-18.webp", category: "Wedding", caption: "First dance sparks" },
     { src: "images/gallery/wedding-19.jpg", category: "Candid", caption: "Family cheers at the reception" },
-    { src: "images/gallery/wedding-20.jpg", category: "Portrait", caption: "Couple portrait in the garden" },
-    { src: "images/gallery/wedding-21.jpg", category: "Destination", caption: "Rings and ocean breeze" },
+    { src: "images/gallery/webp images/wedding-20.webp", category: "Portrait", caption: "Couple portrait in the garden" },
+    { src: "images/gallery/webp images/wedding-21.webp", category: "Destination", caption: "Rings and ocean breeze" },
     { src: "images/gallery/wedding-22.jpg", category: "Wedding", caption: "Ceremony details and decor" },
     { src: "images/gallery/wedding-23.jpg", category: "Candid", caption: "Joy captured between vows" },
     { src: "images/gallery/wedding-24.jpg", category: "Portrait", caption: "Bride’s laughter in the sun" },
@@ -142,8 +142,13 @@ const SITE_CONTENT = {
   // file inside the /videos folder and use "videoFile" instead of
   // "youtubeId" (see the commented example below).
   films: [
-    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "RLH7f8JqNOY", thumbnail: "images/gallery/wedding-07.jpg"},
-    { title: "Rakshu & Vishal — Teaser", youtubeId: "RLH7f8JqNOY", thumbnail: "images/hero/hero-2.jpg"}
+    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "LzjKGjladGA", thumbnail: "images/gallery/wedding-07.jpg"},
+    { title: "Rakshu & Vishal — Teaser", youtubeId: "T0dLSq0O8SE", thumbnail: "images/hero/hero-2.jpg"},
+    { title: "Wedding Film 01", youtubeId: "A0MQGHynz1Y", thumbnail: "images/gallery/webp images/wedding-16.webp"},
+    { title: "Wedding Film 02", youtubeId: "IYEbRwKQljE", thumbnail: "images/gallery/webp images/wedding-17.webp"},
+    { title: "Wedding Film 03", youtubeId: "3xE6PD6RwnM", thumbnail: "images/gallery/webp images/wedding-18.webp"},
+    { title: "Wedding Film 04", youtubeId: "vmEV4yW3i6o", thumbnail: "images/gallery/webp images/wedding-20.webp"},
+    { title: "Wedding Film 05", youtubeId: "B3WbXm9X6XA", thumbnail: "images/gallery/webp images/wedding-21.webp"}
 
     // Example using your own video file instead of YouTube:
     // { title: "Simran & Rohan — Highlights", videoFile: "videos/simran-rohan.mp4", thumbnail: "images/gallery/wedding-04.jpg" }

@@ -478,7 +478,8 @@
 
     card.addEventListener('click', () => {
       if (f.youtubeId){
-        lightboxFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${f.youtubeId}?autoplay=1" title="${f.title||''}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const embedUrl = `https://www.youtube-nocookie.com/embed/${f.youtubeId}?autoplay=1&playsinline=1&rel=0&controls=1&modestbranding=1`;
+        lightboxFrame.innerHTML = `<iframe src="${embedUrl}" title="${f.title||''}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
       } else if (f.videoFile){
         lightboxFrame.innerHTML = `<video src="${f.videoFile}" controls autoplay></video>`;
       } else {
@@ -492,6 +493,9 @@
 
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
   function closeLightbox(){
     lightbox.classList.remove('open');
     lightboxFrame.innerHTML = '';
