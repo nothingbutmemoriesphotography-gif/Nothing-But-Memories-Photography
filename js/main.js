@@ -122,6 +122,9 @@
   }
 
   const displayGallery = shuffleArray(C.gallery);
+  const galleryBatchSize = 7;
+  let galleryCursor = 0;
+  let activeGalleryCategory = 'All';
 
   const masonryState = {
     cols: 4,
@@ -130,9 +133,14 @@
     resizeTimeout: null,
   };
 
+  const galleryLoadMore = el('div', 'gallery-load-more', 'Loading more photographs...');
+  galleryLoadMore.setAttribute('aria-live', 'polite');
+  galleryGrid.parentNode.appendChild(galleryLoadMore);
+
   categories.forEach((cat, i) => {
     const btn = el('button', 'filter-btn' + (i === 0 ? ' active' : ''), cat);
     btn.addEventListener('click', () => {
+      activeGalleryCategory = cat;
       filtersWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       masonryState.items.forEach(item => {
@@ -144,7 +152,7 @@
     filtersWrap.appendChild(btn);
   });
 
-  displayGallery.forEach((g, index) => {
+  function createGalleryItem(g, index){
     const item = el('div', 'gallery-item');
     item.dataset.category = g.category;
     item.dataset.caption = g.caption || '';
@@ -155,7 +163,16 @@
     item.addEventListener('click', () => openCoupleGallery(g));
     galleryGrid.appendChild(item);
     masonryState.items.push(item);
-  });
+    observer.observe(item);
+  }
+
+  function appendGalleryBatch(){
+    const nextItems = displayGallery.slice(galleryCursor, galleryCursor + galleryBatchSize);
+    nextItems.forEach((g, offset) => createGalleryItem(g, galleryCursor + offset));
+    galleryCursor += nextItems.length;
+    galleryLoadMore.hidden = galleryCursor >= displayGallery.length;
+    requestAnimationFrame(refreshMasonry);
+  }
 
   function getColumnCount(){
     if (window.innerWidth <= 360) return 1;
@@ -230,7 +247,22 @@
       if (entry.isIntersecting) entry.target.classList.add('developed');
     });
   }, { threshold: 0.25 });
-  masonryState.items.forEach(item => observer.observe(item));
+
+  appendGalleryBatch();
+
+  let loadMoreScheduled = false;
+  function loadMoreOnScroll(){
+    if (loadMoreScheduled || galleryCursor >= displayGallery.length) return;
+
+    const sentinelTop = galleryLoadMore.getBoundingClientRect().top;
+    if (sentinelTop > window.innerHeight + 500) return;
+    loadMoreScheduled = true;
+    requestAnimationFrame(() => {
+      loadMoreScheduled = false;
+      appendGalleryBatch();
+    });
+  }
+  window.addEventListener('scroll', loadMoreOnScroll, { passive: true });
 
   window.addEventListener('resize', scheduleLayout);
   window.addEventListener('load', refreshMasonry);
