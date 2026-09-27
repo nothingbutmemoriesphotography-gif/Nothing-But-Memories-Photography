@@ -57,7 +57,7 @@ const SITE_CONTENT = {
   // 2. HERO SECTION (the big full-screen images at the very top)
   // -------------------------------------------------------------------
   hero: {
-    heading: "Create. Capture. Cherish.",
+    heading: "Capture. Create. Cherish.",
     subheading: "Turning your biggest days into the memories you'll return to for the rest of your life.",
 
     // Add as many photos as you like. They will fade in and out as a slideshow.
@@ -77,8 +77,8 @@ const SITE_CONTENT = {
   // 3. THE THREE PILLARS — Create / Capture / Cherish
   // -------------------------------------------------------------------
   pillars: [
-    { word: "Create", text: "We plan every frame around your story, your families and the little details you'll want to remember." },
     { word: "Capture", text: "In the moment, unposed, unrepeatable — we're there for the laughter, the tears and everything between." },
+    { word: "Create", text: "We plan every frame around your story, your families and the little details you'll want to remember." },
     { word: "Cherish", text: "Beautifully edited photographs and films you'll come back to for a lifetime, and hand down for another." }
   ],
 
@@ -142,13 +142,17 @@ const SITE_CONTENT = {
   // file inside the /videos folder and use "videoFile" instead of
   // "youtubeId" (see the commented example below).
   films: [
-    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "LzjKGjladGA", thumbnail: "images/gallery/wedding-07.jpg"},
-    { title: "Rakshu & Vishal — Teaser", youtubeId: "T0dLSq0O8SE", thumbnail: "images/hero/hero-2.jpg"},
-    { title: "Wedding Film 01", youtubeId: "A0MQGHynz1Y", thumbnail: "images/gallery/webp images/wedding-16.webp"},
-    { title: "Wedding Film 02", youtubeId: "IYEbRwKQljE", thumbnail: "images/gallery/webp images/wedding-17.webp"},
-    { title: "Wedding Film 03", youtubeId: "3xE6PD6RwnM", thumbnail: "images/gallery/webp images/wedding-18.webp"},
-    { title: "Wedding Film 04", youtubeId: "vmEV4yW3i6o", thumbnail: "images/gallery/webp images/wedding-20.webp"},
-    { title: "Wedding Film 05", youtubeId: "B3WbXm9X6XA", thumbnail: "images/gallery/webp images/wedding-21.webp"}
+    { title: "Rakshu & Vishal — Engagement Teaser", youtubeId: "LzjKGjladGA"},
+    { title: "Lavanya & Jashwanth — Teaser", youtubeId: "T0dLSq0O8SE"},
+    { title: "Sindhu & Srinivas - Teaser", youtubeId: "A0MQGHynz1Y"},
+    { title: "Lavanya & Jashwanth — Wedding Film", youtubeId: "IYEbRwKQljE"},
+    { title: "Divya & Abhishek - Wedding Film", youtubeId: "3xE6PD6RwnM"},
+    { title: "Sindhu & Srinivas - Wedding Film", youtubeId: "vmEV4yW3i6o"},
+    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "B3WbXm9X6XA"},
+    { title: "Rakshu & Vishal — Wedding Teaser", youtubeId: "RBznxdC58As"},
+    { title: "Rakshu & Vishal — Engagement Film", youtubeId: "czE85Y2lqYE"},
+    { title: "Sahana & Vikas — Wedding Film", youtubeId: "VYg_qYfzRE0"},
+    { title: "Sahana & Vikas — Wedding Teaser", youtubeId: "8tVZf8gMq1Y"}
 
     // Example using your own video file instead of YouTube:
     // { title: "Simran & Rohan — Highlights", videoFile: "videos/simran-rohan.mp4", thumbnail: "images/gallery/wedding-04.jpg" }
@@ -168,9 +172,9 @@ const SITE_CONTENT = {
   // 7. TESTIMONIALS
   // -------------------------------------------------------------------
   testimonials: [
-    { quote: "They disappeared into the background and somehow captured every single moment we would have wanted to remember. We cried watching the film.", names: "Riya & Arjun", image: "images/testimonials/client1.jpg" },
-    { quote: "Warm, unobtrusive and incredibly talented. Our families are still talking about how comfortable they felt in front of the camera.", names: "Meher & Kabir", image: "images/testimonials/client2.jpg" },
-    { quote: "Worth every rupee. The photos feel like us — not like a catalogue.", names: "Ananya & Vivaan", image: "images/testimonials/client3.jpg" }
+    { quote: "They disappeared into the background and somehow captured every single moment we would have wanted to remember. We cried watching the film.", names: "Rakshu & Vishal", image: "images/testimonials/client1.jpg" },
+    { quote: "Warm, unobtrusive and incredibly talented. Our families are still talking about how comfortable they felt in front of the camera.", names: "Aishwarya & Shivu", image: "images/testimonials/client2.jpg" },
+    { quote: "Worth every rupee. The photos feel like us — not like a catalogue.", names: "Soundarya & Nagesh", image: "images/testimonials/client3.jpg" }
   ]
 
 };

@@ -160,7 +160,7 @@
     item.style.opacity = '0';
     item.appendChild(makeImage(g.src, g.caption));
     item.appendChild(el('div', 'caption', g.caption || ''));
-    item.addEventListener('click', () => openCoupleGallery(g));
+    item.addEventListener('click', () => openGalleryLightbox(index));
     galleryGrid.appendChild(item);
     masonryState.items.push(item);
     observer.observe(item);
@@ -277,81 +277,64 @@
     }
   });
 
-  // ---------------- COUPLE GALLERY LIGHTBOX ----------------
-  function openCoupleGallery(galItem){
-    let items = [];
-    let caption = '';
-    // If the gallery item specifies a folder and count, build a numbered set
-    if (galItem && galItem.groupFolder){
-      caption = galItem.caption || '';
-      const folder = (galItem.groupFolder || '').replace(/\/$/, '');
-      const count = parseInt(galItem.groupCount, 10) || 7;
-      for (let i = 1; i <= count; i++){
-        items.push({ src: `${folder}/couple${i}.jpg`, caption: caption });
-      }
-    } else {
-      // Fallback: gather all images that share the same caption
-      caption = (galItem && galItem.caption) ? galItem.caption : (typeof galItem === 'string' ? galItem : '');
-      items = C.gallery.filter(g => (g.caption || '') === (caption || ''));
-    }
-    if (!items.length) return;
-
-    // build modal elements
-    const overlay = el('div', 'couple-lightbox open');
-    const closeBtn = el('button', 'couple-close', '&times;');
-    overlay.appendChild(closeBtn);
-
-    const frame = el('div', 'couple-frame');
-    const preview = el('div', 'couple-preview');
-    const meta = el('div', 'couple-meta');
-    const metaPanel = el('div', 'panel');
+  // ---------------- GALLERY LIGHTBOX ----------------
+  function openGalleryLightbox(startIndex){
+    const overlay = el('div', 'gallery-lightbox open');
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Photo viewer');
 
     const imgEl = new Image();
-    imgEl.alt = caption;
-    imgEl.src = items[0].src;
-    preview.appendChild(imgEl);
+    imgEl.className = 'gallery-lightbox-image';
 
-    const captionEl = el('div', 'couple-caption', caption);
-    const indexEl = el('div', 'couple-index', `1 / ${items.length}`);
-    const controls = el('div', 'couple-controls');
-    const prevBtn = el('button', '', 'Prev');
-    const nextBtn = el('button', '', 'Next');
-    controls.appendChild(prevBtn);
-    controls.appendChild(nextBtn);
+    const closeBtn = el('button', 'gallery-lightbox-close', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>');
+    closeBtn.type = 'button';
+    closeBtn.setAttribute('aria-label', 'Close photo viewer');
 
-    metaPanel.appendChild(captionEl);
-    metaPanel.appendChild(indexEl);
-    metaPanel.appendChild(controls);
-    meta.appendChild(metaPanel);
+    const prevBtn = el('button', 'gallery-lightbox-arrow gallery-lightbox-prev', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>');
+    prevBtn.type = 'button';
+    prevBtn.setAttribute('aria-label', 'Previous photo');
 
-    frame.appendChild(preview);
-    frame.appendChild(meta);
-    overlay.appendChild(frame);
+    const nextBtn = el('button', 'gallery-lightbox-arrow gallery-lightbox-next', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>');
+    nextBtn.type = 'button';
+    nextBtn.setAttribute('aria-label', 'Next photo');
+
+    overlay.appendChild(imgEl);
+    overlay.appendChild(closeBtn);
+    overlay.appendChild(prevBtn);
+    overlay.appendChild(nextBtn);
     document.body.appendChild(overlay);
 
-    let idx = 0;
-    function show(i){
-      idx = (i + items.length) % items.length;
-      imgEl.src = items[idx].src;
-      indexEl.textContent = `${idx+1} / ${items.length}`;
-    }
+    let index = startIndex;
 
-    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); show(idx-1); });
-    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); show(idx+1); });
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', keyHandler);
-
-    function keyHandler(e){
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') show(idx-1);
-      if (e.key === 'ArrowRight') show(idx+1);
+    function show(nextIndex){
+      index = (nextIndex + displayGallery.length) % displayGallery.length;
+      imgEl.src = displayGallery[index].src;
+      imgEl.alt = displayGallery[index].caption || '';
     }
 
     function closeModal(){
       document.removeEventListener('keydown', keyHandler);
       overlay.remove();
     }
+
+    function keyHandler(event){
+      if (event.key === 'Escape') closeModal();
+      if (event.key === 'ArrowLeft') show(index - 1);
+      if (event.key === 'ArrowRight') show(index + 1);
+    }
+
+    prevBtn.addEventListener('click', () => show(index - 1));
+    nextBtn.addEventListener('click', () => show(index + 1));
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay) closeModal();
+    });
+    overlay.addEventListener('wheel', event => event.preventDefault(), { passive: false });
+    overlay.addEventListener('touchmove', event => event.preventDefault(), { passive: false });
+    document.addEventListener('keydown', keyHandler);
+    show(index);
+    closeBtn.focus();
   }
 
     // ---------------- CONTACT FORM MODAL ----------------
