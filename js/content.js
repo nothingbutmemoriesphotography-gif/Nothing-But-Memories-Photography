@@ -176,7 +176,7 @@ const SITE_CONTENT = {
     quote: "We don’t just take pictures—we preserve the moments you’ll want to hold onto forever.",
     founders: "Sagar Purohit & Srinivas Thiruvattur",
     founderRole: "Founders & Lead Photographers, Nothing But Memories"
-    // Put your own photo at images/about-photo.jpg
+    // Put your own photo at images/about-photo.webp
   },
 
   // -------------------------------------------------------------------

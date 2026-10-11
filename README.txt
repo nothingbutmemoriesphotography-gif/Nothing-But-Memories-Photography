@@ -26,7 +26,7 @@ Step by step:
   a) Put your photo file inside the matching folder:
        - Homepage slideshow photos -> images/hero/
        - Portfolio/gallery photos  -> images/gallery/
-       - Your own photographer photo -> images/about-photo.jpg
+      - Your own photographer photo -> images/about-photo.webp
   b) Name the file EXACTLY the way it's written on the placeholder,
      or open js/content.js and change the file name listed there to
      match whatever you named your photo.

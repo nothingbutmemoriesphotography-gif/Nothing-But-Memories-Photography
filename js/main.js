@@ -526,12 +526,12 @@
   const aboutPhoto = document.querySelector('.about-photo');
   aboutPhoto.classList.remove('ph-image');
   const aboutImg = new Image();
-  aboutImg.src = 'images/about-photo.JPG';
+  aboutImg.src = 'images/about-photo.webp';
   aboutImg.alt = 'The photographer';
   aboutImg.onerror = () => {
     aboutPhoto.innerHTML = '';
     aboutPhoto.classList.add('ph-image');
-    aboutPhoto.setAttribute('data-label', 'about-photo.jpg');
+    aboutPhoto.setAttribute('data-label', 'about-photo.webp');
   };
   aboutPhoto.appendChild(aboutImg);
 
