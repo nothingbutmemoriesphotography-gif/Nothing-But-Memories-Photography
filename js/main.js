@@ -573,12 +573,9 @@
   navToggle.addEventListener('click', () => nav.classList.toggle('open'));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     header.classList.toggle('scrolled', y > 60);
-    header.classList.toggle('hide', y > lastScroll && y > 300);
-    lastScroll = y;
   });
 
 })();

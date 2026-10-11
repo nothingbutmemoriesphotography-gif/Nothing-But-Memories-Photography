@@ -42,7 +42,7 @@ const SITE_CONTENT = {
     // (by a designer, on Canva, Fiverr, etc.), just put that file inside
     // the images/logo folder and change the file name below to match.
     // PNG, JPG or SVG all work.
-    logoImage: "images/logo/Nothing but Memories.png"
+    logoImage: "images/logo/Nothing but Memories 1.png?v=2"
     // Optional client-side email sending configuration (EmailJS)
     // To enable: set provider to "emailjs" and fill serviceId, templateId and userId
     , emailService: {
