@@ -142,15 +142,15 @@ const SITE_CONTENT = {
   // file inside the /videos folder and use "videoFile" instead of
   // "youtubeId" (see the commented example below).
   films: [
-    { title: "Rakshu & Vishal — Engagement Teaser", youtubeId: "LzjKGjladGA"},
+    { title: "Shirisha & Pavan — Engagement Teaser", youtubeId: "ngbt_i-SYrc"},
     { title: "Lavanya & Jashwanth — Teaser", youtubeId: "T0dLSq0O8SE"},
     { title: "Sindhu & Srinivas - Teaser", youtubeId: "A0MQGHynz1Y"},
     { title: "Lavanya & Jashwanth — Wedding Film", youtubeId: "IYEbRwKQljE"},
     { title: "Divya & Abhishek - Wedding Film", youtubeId: "3xE6PD6RwnM"},
     { title: "Sindhu & Srinivas - Wedding Film", youtubeId: "vmEV4yW3i6o"},
-    { title: "Rakshu & Vishal — Haldi Film", youtubeId: "B3WbXm9X6XA"},
-    { title: "Rakshu & Vishal — Wedding Teaser", youtubeId: "RBznxdC58As"},
-    { title: "Rakshu & Vishal — Engagement Film", youtubeId: "czE85Y2lqYE"},
+    // { title: "Rakshu & Vishal — Haldi Film", youtubeId: "B3WbXm9X6XA"},
+    // { title: "Rakshu & Vishal — Wedding Teaser", youtubeId: "RBznxdC58As"},
+    // { title: "Rakshu & Vishal — Engagement Film", youtubeId: "czE85Y2lqYE"},
     { title: "Sahana & Vikas — Wedding Film", youtubeId: "VYg_qYfzRE0"},
     { title: "Sahana & Vikas — Wedding Teaser", youtubeId: "8tVZf8gMq1Y"}
 
@@ -162,9 +162,20 @@ const SITE_CONTENT = {
   // 6. ABOUT SECTION
   // -------------------------------------------------------------------
   about: {
-    heading: "Our Story",
-    text: "Nothing But Memories Photography began with a simple belief — that the small, unrepeatable moments of a wedding matter as much as the big ones. We travel across the country to document weddings the way they actually happen: joyful, chaotic, tearful and real. Every couple gets a story told in their own voice, not a template.",
-    quote: "\u201cWe don't just take pictures. We keep memories.\u201d"
+    heading: "Behind the Lens: The Journey of Nothing But Memories",
+    introduction: "We didn’t start with expensive lenses, fancy studios, or high-end gear. We started with a shared dream, an endless passion for storytelling, and a deep belief that every genuine smile deserves to live forever.",
+    origin: "The photo you see here isn’t just an image in our portfolio; it is where our story began. Captured at our very first wedding, we shot this without owning a single camera of our own. Armed only with borrowed equipment, raw nervous excitement, and pure passion, we stepped into the world of wedding photography.",
+    profession: "Software Engineers by profession, Photographers by heart.",
+    approach: "By day, we build logic and write code; by weekend, we preserve soul, romance, and unscripted joy. Our background in engineering gives us precision, discipline, and an obsession with detail. But our passion for photography allows us to freeze moments that words often fail to express: the quiet tear during a vow, the uncontrolled laughter among best friends, and the warm embrace of family.",
+    highlightsHeading: "Why Our Journey Matters to Your Story",
+    highlights: [
+      { title: "Pure & Authentic Passion", text: "Because we started from absolute zero, every wedding we photograph is a privilege we never take for granted." },
+      { title: "Precision Meets Emotion", text: "We bring an engineer’s eye for perfection and an artist’s heart for fleeting, beautiful moments." },
+      { title: "100% Candid & Natural", text: "No forced poses, no stiffness—just you, your loved ones, and authentic memories." }
+    ],
+    quote: "We don’t just take pictures—we preserve the moments you’ll want to hold onto forever.",
+    founders: "Sagar Purohit & Srinivas Thiruvattur",
+    founderRole: "Founders & Lead Photographers, Nothing But Memories"
     // Put your own photo at images/about-photo.jpg
   },
 

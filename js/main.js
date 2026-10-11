@@ -29,6 +29,14 @@
     return wrap;
   }
 
+  function compressedGallerySrc(src){
+    return src.replace(/(^|\/)images\/gallery\//, '$1images/compressed/').replace(/\.webp$/i, '_result.webp');
+  }
+
+  function originalGallerySrc(src){
+    return src.replace(/(^|\/)images\/compressed\//, '$1images/gallery/').replace(/_result\.webp$/i, '.webp');
+  }
+
   /* ---------------- HEADER TEXT / LINKS ---------------- */
   document.title = C.business.name;
   document.getElementById('heroTitle').textContent = C.hero.heading;
@@ -109,8 +117,6 @@
 
   /* ---------------- GALLERY ---------------- */
   const galleryGrid = document.getElementById('galleryGrid');
-  const filtersWrap = document.getElementById('galleryFilters');
-  const categories = ['All', ...new Set(C.gallery.map(g => g.category))];
 
   function shuffleArray(array){
     const clone = array.slice();
@@ -121,10 +127,12 @@
     return clone;
   }
 
-  const displayGallery = shuffleArray(C.gallery);
+  const displayGallery = shuffleArray(C.gallery).map(g => ({
+    ...g,
+    thumbnailSrc: compressedGallerySrc(g.src),
+  }));
   const galleryBatchSize = 7;
   let galleryCursor = 0;
-  let activeGalleryCategory = 'All';
 
   const masonryState = {
     cols: 4,
@@ -137,29 +145,11 @@
   galleryLoadMore.setAttribute('aria-live', 'polite');
   galleryGrid.parentNode.appendChild(galleryLoadMore);
 
-  categories.forEach((cat, i) => {
-    const btn = el('button', 'filter-btn' + (i === 0 ? ' active' : ''), cat);
-    btn.addEventListener('click', () => {
-      activeGalleryCategory = cat;
-      filtersWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      masonryState.items.forEach(item => {
-        const show = cat === 'All' || item.dataset.category === cat;
-        item.classList.toggle('hidden', !show);
-      });
-      requestAnimationFrame(refreshMasonry);
-    });
-    filtersWrap.appendChild(btn);
-  });
-
   function createGalleryItem(g, index){
     const item = el('div', 'gallery-item');
-    item.dataset.category = g.category;
-    item.dataset.caption = g.caption || '';
     item.dataset.index = index;
     item.style.opacity = '0';
-    item.appendChild(makeImage(g.src, g.caption));
-    item.appendChild(el('div', 'caption', g.caption || ''));
+    item.appendChild(makeImage(g.thumbnailSrc, g.caption));
     item.addEventListener('click', () => openGalleryLightbox(index));
     galleryGrid.appendChild(item);
     masonryState.items.push(item);
@@ -309,7 +299,7 @@
 
     function show(nextIndex){
       index = (nextIndex + displayGallery.length) % displayGallery.length;
-      imgEl.src = displayGallery[index].src;
+      imgEl.src = originalGallerySrc(displayGallery[index].thumbnailSrc);
       imgEl.alt = displayGallery[index].caption || '';
     }
 
@@ -518,12 +508,25 @@
 
   /* ---------------- ABOUT ---------------- */
   document.getElementById('aboutHeading').textContent = C.about.heading;
-  document.getElementById('aboutText').textContent = C.about.text;
+  document.getElementById('aboutIntro').textContent = C.about.introduction;
+  document.getElementById('aboutOrigin').textContent = C.about.origin;
+  document.getElementById('aboutProfession').textContent = C.about.profession;
+  document.getElementById('aboutApproach').textContent = C.about.approach;
+  document.getElementById('aboutHighlightsHeading').textContent = C.about.highlightsHeading;
+  const aboutHighlights = document.getElementById('aboutHighlights');
+  C.about.highlights.forEach(highlight => {
+    const item = el('li', 'about-highlight');
+    item.appendChild(el('strong', '', highlight.title));
+    item.appendChild(el('span', '', highlight.text));
+    aboutHighlights.appendChild(item);
+  });
   document.getElementById('aboutQuote').textContent = C.about.quote;
+  document.getElementById('aboutFounders').textContent = C.about.founders;
+  document.getElementById('aboutFounderRole').textContent = C.about.founderRole;
   const aboutPhoto = document.querySelector('.about-photo');
   aboutPhoto.classList.remove('ph-image');
   const aboutImg = new Image();
-  aboutImg.src = 'images/about-photo.jpg';
+  aboutImg.src = 'images/about-photo.JPG';
   aboutImg.alt = 'The photographer';
   aboutImg.onerror = () => {
     aboutPhoto.innerHTML = '';
