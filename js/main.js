@@ -18,6 +18,7 @@
     const img = new Image();
     img.alt = alt || '';
     img.loading = 'lazy';
+    img.decoding = 'async';
     img.onerror = function(){
       wrap.innerHTML = '';
       const ph = el('div', 'ph-image');
@@ -131,8 +132,9 @@
     ...g,
     thumbnailSrc: compressedGallerySrc(g.src),
   }));
-  const galleryBatchSize = 7;
   let galleryCursor = 0;
+  let masonryRefreshInProgress = false;
+  let masonryRefreshPending = false;
 
   const masonryState = {
     cols: 4,
@@ -149,7 +151,11 @@
     const item = el('div', 'gallery-item');
     item.dataset.index = index;
     item.style.opacity = '0';
-    item.appendChild(makeImage(g.thumbnailSrc, g.caption));
+    const imageWrap = makeImage(g.thumbnailSrc, g.caption);
+    const image = imageWrap.querySelector('img');
+    image.addEventListener('load', refreshMasonry, { once: true });
+    image.addEventListener('error', refreshMasonry, { once: true });
+    item.appendChild(imageWrap);
     item.addEventListener('click', () => openGalleryLightbox(index));
     galleryGrid.appendChild(item);
     masonryState.items.push(item);
@@ -157,7 +163,8 @@
   }
 
   function appendGalleryBatch(){
-    const nextItems = displayGallery.slice(galleryCursor, galleryCursor + galleryBatchSize);
+    const batchSize = window.innerWidth <= 760 ? 4 : 7;
+    const nextItems = displayGallery.slice(galleryCursor, galleryCursor + batchSize);
     nextItems.forEach((g, offset) => createGalleryItem(g, galleryCursor + offset));
     galleryCursor += nextItems.length;
     galleryLoadMore.hidden = galleryCursor >= displayGallery.length;
@@ -182,7 +189,7 @@
     return Promise.all(items.map(item => {
       const img = item.querySelector('img');
       if (!img) return Promise.resolve();
-      if (img.complete && img.naturalHeight !== 0) return Promise.resolve();
+      if (img.complete) return Promise.resolve();
       return new Promise(resolve => { img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', resolve, { once: true }); });
     }));
   }
@@ -221,10 +228,20 @@
   }
 
   async function refreshMasonry(){
+    if (masonryRefreshInProgress){
+      masonryRefreshPending = true;
+      return;
+    }
+    masonryRefreshInProgress = true;
     updateGalleryColumns();
     const itemsToLayout = masonryState.items.filter(item => !item.classList.contains('hidden'));
     await waitForImages(itemsToLayout);
     layoutMasonry();
+    masonryRefreshInProgress = false;
+    if (masonryRefreshPending){
+      masonryRefreshPending = false;
+      refreshMasonry();
+    }
   }
 
   function scheduleLayout(){
@@ -255,17 +272,6 @@
   window.addEventListener('scroll', loadMoreOnScroll, { passive: true });
 
   window.addEventListener('resize', scheduleLayout);
-  window.addEventListener('load', refreshMasonry);
-  setTimeout(refreshMasonry, 300);
-
-  // Recalculate layout when any gallery image finishes loading
-  masonryState.items.forEach(item => {
-    const img = item.querySelector('img');
-    if (img){
-      img.addEventListener('load', () => requestAnimationFrame(refreshMasonry));
-      img.addEventListener('error', () => requestAnimationFrame(refreshMasonry));
-    }
-  });
 
   // ---------------- GALLERY LIGHTBOX ----------------
   function openGalleryLightbox(startIndex){

@@ -258,7 +258,6 @@ h1,h2,h3{ font-family: var(--font-display); font-weight: 500; margin:0; }
   cursor:pointer;
   transition: transform .4s ease, opacity .35s ease;
   transform-origin: top left;
-  will-change: transform, opacity;
 }
 .gallery-item .ph-image, .gallery-item img{ width:100%; }
 .gallery-item img{ width:100%; height:auto; object-fit:cover; }
@@ -546,6 +545,12 @@ h1,h2,h3{ font-family: var(--font-display); font-weight: 500; margin:0; }
 @media (max-width: 760px){
   .gallery-grid{ --masonry-columns: 2; --masonry-gap: 12px; }
   .films-grid{ grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .gallery-item img,
+  .gallery-item .ph-image{
+    filter:none;
+    transform:none;
+    transition:none;
+  }
 }
 @media (max-width: 360px){
   .gallery-grid{ --masonry-columns: 1; --masonry-gap: 12px; }
