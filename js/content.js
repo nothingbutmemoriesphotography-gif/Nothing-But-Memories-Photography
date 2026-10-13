@@ -126,7 +126,17 @@ const SITE_CONTENT = {
     { src: "images/gallery/wedding-31.webp", category: "Candid", caption: "First look smiles" },
     { src: "images/gallery/wedding-32.webp", category: "Portrait", caption: "Couple under a floral arch" },
     { src: "images/gallery/wedding-33.webp", category: "Pre-Wedding", caption: "Playful moments before the day" },
-    { src: "images/gallery/wedding-34.webp", category: "Wedding", caption: "Golden hour vows" }
+    { src: "images/gallery/wedding-34.webp", category: "Wedding", caption: "Golden hour vows" },
+    { src: "images/gallery/wedding-35.webp", category: "Wedding", caption: "Wedding moment 35" },
+    { src: "images/gallery/wedding-36.webp", category: "Wedding", caption: "Wedding moment 36" },
+    { src: "images/gallery/wedding-37.webp", category: "Wedding", caption: "Wedding moment 37" },
+    { src: "images/gallery/wedding-38.webp", category: "Wedding", caption: "Wedding moment 38" },
+    { src: "images/gallery/wedding-39.webp", category: "Wedding", caption: "Wedding moment 39" },
+    { src: "images/gallery/wedding-40.webp", category: "Wedding", caption: "Wedding moment 40" },
+    { src: "images/gallery/wedding-41.webp", category: "Wedding", caption: "Wedding moment 41" },
+    { src: "images/gallery/wedding-42.webp", category: "Wedding", caption: "Wedding moment 42" },
+    { src: "images/gallery/wedding-43.webp", category: "Wedding", caption: "Wedding moment 43" },
+    { src: "images/gallery/wedding-44.webp", category: "Wedding", caption: "Wedding moment 44" }
 
   ],
 

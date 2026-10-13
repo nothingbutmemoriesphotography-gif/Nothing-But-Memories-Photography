@@ -133,6 +133,7 @@
     thumbnailSrc: compressedGallerySrc(g.src),
   }));
   let galleryCursor = 0;
+  let galleryBatchLoading = false;
   let masonryRefreshInProgress = false;
   let masonryRefreshPending = false;
 
@@ -143,8 +144,11 @@
     resizeTimeout: null,
   };
 
-  const galleryLoadMore = el('div', 'gallery-load-more', 'Loading more photographs...');
+  const galleryLoadMore = el('div', 'gallery-load-more');
+  galleryLoadMore.innerHTML = '<span class="gallery-loader" aria-hidden="true"></span><span class="gallery-load-label">Gathering the moments</span>';
+  galleryLoadMore.setAttribute('role', 'status');
   galleryLoadMore.setAttribute('aria-live', 'polite');
+  galleryLoadMore.setAttribute('aria-hidden', 'true');
   galleryGrid.parentNode.appendChild(galleryLoadMore);
 
   function createGalleryItem(g, index){
@@ -153,6 +157,7 @@
     item.style.opacity = '0';
     const imageWrap = makeImage(g.thumbnailSrc, g.caption);
     const image = imageWrap.querySelector('img');
+    image.loading = 'eager';
     image.addEventListener('load', refreshMasonry, { once: true });
     image.addEventListener('error', refreshMasonry, { once: true });
     item.appendChild(imageWrap);
@@ -160,15 +165,34 @@
     galleryGrid.appendChild(item);
     masonryState.items.push(item);
     observer.observe(item);
+    return item;
   }
 
-  function appendGalleryBatch(){
+  async function appendGalleryBatch(showLoader = false){
     const batchSize = window.innerWidth <= 760 ? 4 : 7;
     const nextItems = displayGallery.slice(galleryCursor, galleryCursor + batchSize);
-    nextItems.forEach((g, offset) => createGalleryItem(g, galleryCursor + offset));
+    if (!nextItems.length) return;
+    if (showLoader){
+      galleryBatchLoading = true;
+      galleryLoadMore.hidden = false;
+      galleryLoadMore.classList.add('is-loading');
+      galleryLoadMore.setAttribute('aria-hidden', 'false');
+    }
+    const batchItems = nextItems.map((g, offset) => createGalleryItem(g, galleryCursor + offset));
     galleryCursor += nextItems.length;
-    galleryLoadMore.hidden = galleryCursor >= displayGallery.length;
+    if (!showLoader) galleryLoadMore.hidden = galleryCursor >= displayGallery.length;
     requestAnimationFrame(refreshMasonry);
+    if (showLoader){
+      try {
+        await waitForImages(batchItems);
+        await refreshMasonry();
+      } finally {
+        galleryBatchLoading = false;
+        galleryLoadMore.classList.remove('is-loading');
+        galleryLoadMore.setAttribute('aria-hidden', 'true');
+        galleryLoadMore.hidden = galleryCursor >= displayGallery.length;
+      }
+    }
   }
 
   function getColumnCount(){
@@ -259,14 +283,14 @@
 
   let loadMoreScheduled = false;
   function loadMoreOnScroll(){
-    if (loadMoreScheduled || galleryCursor >= displayGallery.length) return;
+    if (loadMoreScheduled || galleryBatchLoading || galleryCursor >= displayGallery.length) return;
 
     const sentinelTop = galleryLoadMore.getBoundingClientRect().top;
     if (sentinelTop > window.innerHeight + 500) return;
     loadMoreScheduled = true;
     requestAnimationFrame(() => {
       loadMoreScheduled = false;
-      appendGalleryBatch();
+      appendGalleryBatch(true);
     });
   }
   window.addEventListener('scroll', loadMoreOnScroll, { passive: true });
